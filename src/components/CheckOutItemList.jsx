@@ -32,7 +32,7 @@ const CheckOutItemList = ({ items, setItems, updateAmount }) => {
   };
   return (
     <Container>
-      <div className="overflow-x-auto border border-orange-200/70 rounded-sm">
+      <div className="overflow-y-scroll border border-orange-200/70 rounded-sm">
         <Table className="invoice-table">
           <Table.Head>
             <Table.HeadCell className="text-right">No</Table.HeadCell>
