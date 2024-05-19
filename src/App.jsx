@@ -37,12 +37,12 @@ const App = () => {
   const updateStock = () => {
     setProducts((currentProducts) => {
       return currentProducts.map((currentProduct) => {
-        const isStore = items.filter((item) => item.id === currentProduct.id);
+        const isItem = items.filter((item) => item.id === currentProduct.id);
         if (isStore.length !== 0) {
           setItems([]);
           return {
             ...currentProduct,
-            stock: currentProduct.stock - isStore[0].qty,
+            stock: currentProduct.stock - isItem[0].qty,
           };
         }
 

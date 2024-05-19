@@ -8,8 +8,10 @@ const CheckOutForm = ({ products, setItems, items, updateAmount }) => {
 
   const handleForm = (e) => {
     e.preventDefault();
+    const selectProductValue = selectProduct.current.value;
+    const inputQtyValue = inputQty.current.value;
     const currentProduct = products.filter((product) => {
-      if (product.id === parseInt(selectProduct.current.value)) {
+      if (product.id === parseInt(selectProductValue)) {
         return product;
       }
     });
@@ -21,7 +23,7 @@ const CheckOutForm = ({ products, setItems, items, updateAmount }) => {
         id: currentProduct[0].id,
         name: currentProduct[0].name,
         price: currentProduct[0].price,
-        qty: parseInt(inputQty.current.value),
+        qty: parseInt(inputQtyValue),
       };
       setItems((current) => {
         return [...current, item];
@@ -29,10 +31,10 @@ const CheckOutForm = ({ products, setItems, items, updateAmount }) => {
     } else {
       setItems((currentItems) => {
         return currentItems.map((currentItem) => {
-          if (currentItem.id === parseInt(selectProduct.current.value)) {
+          if (currentItem.id === parseInt(selectProductValue)) {
             return {
               ...currentItem,
-              qty: currentItem.qty + parseInt(inputQty.current.value),
+              qty: currentItem.qty + parseInt(inputQtyValue),
             };
           }
           return currentItem;
@@ -49,6 +51,7 @@ const CheckOutForm = ({ products, setItems, items, updateAmount }) => {
         <form
           onSubmit={handleForm}
           className="grid grid-cols-5 grid-rows-1 gap-1 mt-5 mb-5"
+          id="checkOutForm"
         >
           <Select
             ref={selectProduct}
